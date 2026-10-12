@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#dce8f6">
+<title>A Little Birthday Surprise 💙</title>
+<style>
+:root{--navy:#294568;--blue:#7e9fc7;--pale:#e8f0fa;--cream:#fffaf0;--ink:#263b57;--line:#c9d8eb}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:"Trebuchet MS",Arial,sans-serif;background-color:var(--cream);
+background-image:linear-gradient(45deg,rgba(126,159,199,.12) 25%,transparent 25%,transparent 75%,rgba(126,159,199,.12) 75%),linear-gradient(45deg,rgba(126,159,199,.12) 25%,transparent 25%,transparent 75%,rgba(126,159,199,.12) 75%);
+background-size:28px 28px;background-position:0 0,14px 14px}
+button{font:inherit;cursor:pointer}
+.page{width:min(760px,100%);margin:auto;padding:18px 14px 48px}
+.paper{position:relative;background:rgba(255,250,240,.96);border:2px solid white;outline:1px solid var(--line);border-radius:24px;padding:clamp(20px,5vw,42px);box-shadow:0 12px 35px #29456818;overflow:hidden}
+.ribbon{font-size:2.2rem;text-align:center;margin-bottom:4px}
+.kicker{text-align:center;text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;color:#6683a8;font-weight:bold}
+h1,h2,p{text-align:center}
+h1{font-size:clamp(2rem,8vw,4rem);line-height:1.02;margin:12px 0;color:var(--navy);font-weight:900}
+.subtitle{font-size:1.02rem;line-height:1.7;max-width:500px;margin:12px auto 22px}
+button.primary{border:0;border-radius:999px;background:var(--navy);color:white;padding:13px 22px;box-shadow:0 5px 0 #b9cbe0;transition:transform .15s}
+button.primary:active{transform:translateY(3px);box-shadow:0 2px 0 #b9cbe0}
+.center{text-align:center}
+.section{margin-top:20px}
+.card{background:#fffdf8;border:1px dashed #9eb7d6;border-radius:20px;padding:20px;margin-top:16px}
+h2{color:var(--navy);font-size:1.35rem;margin:0 0 10px}
+.message{min-height:112px;display:grid;place-items:center;font-size:1.06rem;line-height:1.8;padding:8px 4px;text-align:center}
+.small{font-size:.85rem;line-height:1.6;color:#607795;text-align:center}
+.pill{display:inline-block;border-radius:999px;background:#e6eef9;padding:7px 12px;font-size:.8rem;color:var(--navy);margin:4px}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.photo{background:white;padding:8px 8px 24px;box-shadow:0 4px 14px #29456816;transform:rotate(-1.5deg)}
+.photo:nth-child(even){transform:rotate(1.8deg)}
+.photo img{width:100%;aspect-ratio:1/1;object-fit:cover;background:#dce8f6;display:block}
+.photo figcaption{text-align:center;font-size:.82rem;margin-top:9px}
+.music-row{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}
+input[type="range"]{width:120px;accent-color:var(--navy)}
+.secret{display:none;text-align:center;line-height:1.9;padding:16px;background:#edf3fb;border-radius:16px;margin-top:14px;animation:fade .5s}
+.secret.show{display:block}
+footer{text-align:center;font-size:.8rem;color:#6f86a5;padding:22px 8px 0}
+.heart{position:fixed;bottom:-30px;z-index:9;pointer-events:none;animation:floatUp 4.5s linear forwards;color:#789ac5}
+@keyframes floatUp{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:600px){.gallery{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<main class="page">
+  <section class="paper">
+    <div class="ribbon">🎀</div>
+    <div class="kicker">a tiny website made with love</div>
+    <h1>Happy Birthday,<br>My Love 💙</h1>
+    <p class="subtitle">For the person who makes ordinary days feel a little more special. I made a little something just for you.</p>
+    <div class="center"><button class="primary" id="startBtn">Open your surprise ✨</button></div>
+    <p class="small">♡ blue gingham, little memories, and a whole lot of love ♡</p>
+  </section>
+
+  <section class="paper section" id="surprises">
+    <div class="kicker">little notes for you</div>
+    <h2>Tap for a Surprise 💌</h2>
+    <div class="card">
+      <div class="message" id="message">Aku punya beberapa hal yang pengin aku bilang ke kamu… pencet tombolnya yaa. 🥹</div>
+      <div class="center"><button class="primary" id="surpriseBtn">Surprise me! 🎁</button></div>
+      <p class="small" id="counter">Your first little note is waiting.</p>
+    </div>
+  </section>
+
+  <section class="paper section">
+    <div class="kicker">our little memories</div>
+    <h2>Moments I Keep Close 📸</h2>
+    <p class="small">Ganti gambar di bawah dengan foto kalian. Lihat petunjuk di file README setelah mengunduh.</p>
+    <div class="gallery">
+      <figure class="photo"><img src="photo1.jpg" alt="Foto kenangan pertama" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','<div style=&quot;aspect-ratio:1;background:#e3edf8;display:grid;place-items:center;font-size:2.4rem&quot;>📷</div>')"><figcaption>my favorite memory ♡</figcaption></figure>
+      <figure class="photo"><img src="photo2.jpg" alt="Foto kenangan kedua" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','<div style=&quot;aspect-ratio:1;background:#e3edf8;display:grid;place-items:center;font-size:2.4rem&quot;>🩵</div>')"><figcaption>you + me</figcaption></figure>
+      <figure class="photo"><img src="photo3.jpg" alt="Foto kenangan ketiga" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('afterbegin','<div style=&quot;aspect-ratio:1;background:#e3edf8;display:grid;place-items:center;font-size:2.4rem&quot;>🌷</div>')"><figcaption>a day to remember</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="paper section">
+    <div class="kicker">a song for you</div>
+    <h2>Press Play 🎵</h2>
+    <p class="small">Tambahkan file musik milikmu dengan nama <b>music.mp3</b> di folder yang sama. Musik baru mulai setelah tombol ditekan.</p>
+    <div class="music-row">
+      <button class="primary" id="musicBtn">▶ Play our song</button>
+      <label class="small">Volume <input id="volume" type="range" min="0" max="1" step=".05" value=".7"></label>
+    </div>
+    <audio id="song" src="music.mp3" preload="none" loop></audio>
+    <p class="small" id="musicStatus">Pilih lagu yang kamu punya hak untuk gunakan yaa.</p>
+  </section>
+
+  <section class="paper section">
+    <div class="kicker">one more thing</div>
+    <h2>A Little Countdown 🎂</h2>
+    <p class="small">Ubah tanggal target di kode supaya sesuai dengan hari ulang tahunnya.</p>
+    <div class="center">
+      <span class="pill" id="days">-- days</span>
+      <span class="pill" id="hours">-- hours</span>
+      <span class="pill" id="minutes">-- min</span>
+      <span class="pill" id="seconds">-- sec</span>
+    </div>
+    <p class="small" id="countdownNote">Counting down to your special day…</p>
+  </section>
+
+  <section class="paper section">
+    <div class="kicker">just between us</div>
+    <h2>One Secret Letter 🔐</h2>
+    <p class="subtitle">Ada satu pesan terakhir yang aku simpan khusus buat kamu.</p>
+    <div class="center"><button class="primary" id="secretBtn">Open my heart 💌</button></div>
+    <div class="secret" id="secretText">Happy birthday, my love. Thank you for being part of my life. Aku nggak bisa janji semuanya akan selalu sempurna, tapi aku akan berusaha menghargai kamu, mendengarkan kamu, dan membuat banyak kenangan baik bersama kamu. Semoga tahun ini membawa lebih banyak tawa, ketenangan, dan hal-hal yang kamu impikan. You deserve to feel loved—not just today, but every day. 💙</div>
+  </section>
+  <footer>made with ♡, just for you · stay happy, birthday boy!</footer>
+</main>
+<script>
+const messages = [
+  "Happy birthday, sayanggg! 🎂 Semoga hari ini kamu ngerasa disayang, dihargai, dan dikelilingi hal-hal baik. You deserve so much happiness. 💙",
+  "Panjang umur, sehat selalu, dan semoga semua hal baik pelan-pelan datang ke hidup kamu. Jangan lupa istirahat dan jaga diri, yaa. 🫶",
+  "Aku bangga sama kamu—termasuk sama usaha-usaha kecil yang mungkin nggak semua orang lihat. Kalau hari terasa berat, kamu nggak harus menghadapi semuanya sendirian.",
+  "Semoga semua mimpi yang kamu simpan punya jalan untuk jadi nyata. Jangan menyerah sama diri sendiri, okay? I'll always cheer for you. ⭐",
+  "Makasih udah jadi bagian dari hari-hariku. Hal sederhana pun bisa terasa spesial kalau ada kamu. I hope we make more beautiful memories together. 📸",
+  "Hari ini kamu boleh banget jadi pusat perhatian, makan yang enak, ketawa banyak, dan menikmati hari kamu. It's your day, birthday boy! 🎉",
+  "And one last reminder: kamu nggak harus selalu kuat untuk pantas disayang. Jadi diri kamu sendiri aja—aku berharap kamu selalu punya ruang untuk merasa aman dan jadi bahagia. 🤍"
+];
+let messageIndex = 0;
+const messageEl = document.getElementById('message');
+document.getElementById('surpriseBtn').addEventListener('click', () => {
+  messageEl.style.animation='none'; void messageEl.offsetWidth; messageEl.style.animation='fade .45s';
+  messageIndex = (messageIndex + 1) % messages.length;
+  messageEl.textContent = messages[messageIndex];
+  document.getElementById('counter').textContent = `Little note ${messageIndex+1} of ${messages.length} · keep tapping ♡`;
+  burstHearts(7);
+});
+document.getElementById('startBtn').addEventListener('click', () => {
+  document.getElementById('surprises').scrollIntoView({behavior:'smooth'});
+  burstHearts(12);
+});
+function burstHearts(n){for(let i=0;i<n;i++){const h=document.createElement('span');h.className='heart';h.textContent=['♡','♥','✦','💙'][Math.floor(Math.random()*4)];h.style.left=(Math.random()*100)+'vw';h.style.fontSize=(16+Math.random()*18)+'px';h.style.animationDuration=(3+Math.random()*2)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),5200)}}
+const song=document.getElementById('song'), musicBtn=document.getElementById('musicBtn'), musicStatus=document.getElementById('musicStatus');
+musicBtn.addEventListener('click', async()=>{if(song.paused){try{await song.play();musicBtn.textContent='❚❚ Pause song';musicStatus.textContent='Playing your song ♡'}catch(e){musicStatus.textContent='Tambahkan music.mp3 ke folder website dulu, lalu coba lagi.'}}else{song.pause();musicBtn.textContent='▶ Play our song';musicStatus.textContent='Paused — tap play whenever you like.'}});
+document.getElementById('volume').addEventListener('input',e=>song.volume=Number(e.target.value));song.volume=.7;
+document.getElementById('secretBtn').addEventListener('click',()=>{document.getElementById('secretText').classList.toggle('show');document.getElementById('secretBtn').textContent=document.getElementById('secretText').classList.contains('show')?'Close my letter 💙':'Open my heart 💌';if(document.getElementById('secretText').classList.contains('show'))burstHearts(14)});
+const targetDate = new Date('2026-10-13T00:00:00');
+function updateCountdown(){let diff=targetDate.getTime()-Date.now();const note=document.getElementById('countdownNote');if(diff<=0){['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='0 '+({'days':'days','hours':'hours','minutes':'min','seconds':'sec'}[id]));note.textContent='Today is your special day! Happy birthday! 🎂';return}
+const d=Math.floor(diff/86400000);diff%=86400000;const h=Math.floor(diff/3600000);diff%=3600000;const m=Math.floor(diff/60000);const s=Math.floor((diff%60000)/1000);
+document.getElementById('days').textContent=d+' days';document.getElementById('hours').textContent=h+' hours';document.getElementById('minutes').textContent=m+' min';document.getElementById('seconds').textContent=s+' sec';note.textContent='Every second brings us closer to your day ♡'}
+updateCountdown();setInterval(updateCountdown,1000);
+</script>
+</body>
+</html>
